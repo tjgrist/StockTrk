@@ -12,9 +12,10 @@ namespace StockTrk
         static void Main(string[] args)
         {
             WebClient web = new WebClient();
-            string yahooUrl = "http://download.finance.yahoo.com/d/quotes.csv?s=PLXS";
+            string yahooUrl = "http://download.finance.yahoo.com/d/quotes.csv?s=NYSE,AAPL,MSFT,PLXS,YHOO,BTCUSD=X&f=nab";
             string csvData = web.DownloadString(yahooUrl);
-            Console.WriteLine(csvData);
+            YahooFinance accountant = new YahooFinance();
+            accountant.getInfo(csvData);
             Console.ReadKey();
 
 
