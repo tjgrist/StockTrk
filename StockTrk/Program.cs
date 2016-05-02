@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net; //for WebClient
+
 
 namespace StockTrk
 {
@@ -11,15 +11,14 @@ namespace StockTrk
     {
         static void Main(string[] args)
         {
-            WebClient web = new WebClient();
-            string yahooUrl = "http://download.finance.yahoo.com/d/quotes.csv?s=NYSE,AAPL,MSFT,PLXS,YHOO,BTCUSD=X&f=nab";
-            string csvData = web.DownloadString(yahooUrl);
-            YahooFinance accountant = new YahooFinance();
-            accountant.getInfo(csvData);
-            Console.ReadKey();
-
-
-
+            User user = new User();
+            while (true)//Set back to this: (user.Validated)
+            {
+                YahooFinance accountant = new YahooFinance();
+                accountant.buildURL(user);
+                user.promptOptions();
+                Console.ReadKey();
+            }
         }
     }
 }
