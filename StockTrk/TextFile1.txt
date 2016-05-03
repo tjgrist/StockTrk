@@ -6,10 +6,11 @@ User can:
 ~view real time data of Program's default stocks from YahooFinance API
 ~see a shortlist of info of each stock -- e.g. stock Symbol, %-change YTD, open price.
 ~change stocks that they want to view
-~change the info they want to see of each stock 
-~can choose to get prompted when a stock dips below certain level
-~sees updated console of stocks and info after user stock updates and changes.
+~change the info they want to see of each stock
+~sees updated console of stocks and info after user stock updates and changes. 
 ~sign in (Regex)
+
+~can choose to get prompted when a stock dips below certain level
 
 Extras, if time allows: 
 ~user can add another user that signs in (creates mock account) and goes through the above

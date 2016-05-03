@@ -3,24 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net; //for WebClient
+using System.Net;
 
 namespace StockTrk
 {
     class YahooFinance
     {
-
         protected string yahooUrl;
         protected string csvData;
+        WebClient web = new WebClient();
 
         public YahooFinance()
         {
-            /*change this constructor when program is more established.
-            Currently using it only for viewing purposes.*/
-            //yahooUrl = "http://download.finance.yahoo.com/d/quotes.csv?s=MSFT,PLXS,BTCUSD=X&f=nsop2";
-            //showData(yahooUrl);
+            //Can put potentially put User instance here.
         }
-
         public string Csv
         {
             get { return csvData; }
@@ -38,16 +34,15 @@ namespace StockTrk
         }
         public void showData(string yahooUrl)
         {
-            WebClient web = new WebClient();
             Stock stocks = new Stock();
             csvData = web.DownloadString(yahooUrl);
             stocks.getInfo(csvData);
         }
-        public void changeUrlStocks(string replacableStock,string newStock)
+        public void downloadCsv()
         {
-            //Change the url based on string input in stocks.changeStocks()
-            yahooUrl = yahooUrl.Replace(replacableStock, newStock);
-            showData(yahooUrl);
+            //Downloads to local directory.
+            Uri uri = new Uri(YahooUrl);
+            web.DownloadFileAsync(uri, @"C:\Downloads\StockTrkStocks.csv");
         }
     }
 }

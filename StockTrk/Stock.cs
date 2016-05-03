@@ -11,10 +11,14 @@ namespace StockTrk
     {
         List<string> stockList = new List<string>();
         List<string> info = new List<string>();
+        //Add member variables for stock qoutes.
+        //char stockExchange = 'x';
+        //char askPrice = 'a';
+        //char buyPrice = 'b';
 
         public void getInfo(string csvData)
         {
-            Console.WriteLine("\nHere's the requested information about your stocks:\n");
+            Console.WriteLine("\nHere's the requested information about your stocks:");
             stockList = csvData.Split('\n').ToList();
             foreach (string stock in stockList)
             {
@@ -44,30 +48,14 @@ namespace StockTrk
         }
         public string showCommonStocks()
         {
-            return "\nSome common stocks:\nMSFT(Microsoft),FB(Facebook),GOOG(Google),AAPL(APPLE)\n"
-                +"S&P500,NYSE(New York Stock Exchange),BTCUSD=X(Bitcoin),YHOO(Yahoo!),'TSLA'(Tesla)\n";
-            //Print some common stocks.
+            return "\nSome common stocks:\nMSFT(Microsoft)\nFB(Facebook)\nGOOG(Google)\nAAPL(APPLE)\n"
+                + "BTCUSD=X(Bitcoin)\nYHOO(Yahoo!)\nTSLA(Tesla)\nTWTR(Twitter)\nADBE(Adobe)\n"
+                +"AMZN(Amazon)\nNFLX(Netflix)\nCRM(Salesforce)\nNYSE(New York Stock Exchange)\n";
         }
         public string showCommonQuotes()
         {
-            //print some common quotes.
-            return "Some common quote symbols:\n\n'x'(Stock Exchange),'a'(ask),'b'(buy),'o',(open)\n"
-                +"'p2'(percent change),'p'(previous close)'j'(52-week Low)'k'(52-week High)\n";
-        }
-        public void changeStocks(YahooFinance api)
-        {
-            //Change the stocks viewed by the user.
-            Console.WriteLine("Which stock would you like to replace?");
-            string replacableStock = Console.ReadLine();
-            Console.WriteLine("Which stock would you like to replace it with?");
-            string newStock = Console.ReadLine();
-            string url = api.YahooUrl;
-            api.YahooUrl = url.Replace(replacableStock, newStock);
-            showData(api.YahooUrl);
-        }
-        public void changeQuotes()
-        {
-            //Change the quotes viewed by the user.
+            return "Some common quote symbols:\n\n'x'(Stock Exchange)\n'a'(ask)\n'b'(buy)\n'o'(open)\n"
+                + "'p2'(percent change)\n'p'(previous close)\n'j'(52-week Low)\n'k'(52-week High)\n";
         }
     }
 }

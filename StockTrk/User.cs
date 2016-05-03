@@ -15,8 +15,8 @@ namespace StockTrk
         string stockQuotes;
         string baseUrl;
         string fullUrl;
-        string answer;
         Stock market = new Stock();
+        Articles stockNews = new Articles();
 
         public User()
         {
@@ -40,9 +40,8 @@ namespace StockTrk
          
         public string buildURL()
         {
-            //Build the Yahoo! URL string from basic.
             baseUrl = "http://download.finance.yahoo.com/d/quotes.csv?s=";
-            Console.Write("Which stocks would you like to view?\nSeparate your stock symbols with commas." + market.showCommonStocks());
+            Console.Write("\nWhich STOCKS would you like to view?\nSeparate your stock symbols with commas." + market.showCommonStocks());
             stocks = Console.ReadLine().Replace(" ","");
             Console.WriteLine("Add the stock info you would like to see.\n" + market.showCommonQuotes());
             stockQuotes = Console.ReadLine().Replace(" ","").Replace(",","");
@@ -55,21 +54,30 @@ namespace StockTrk
             bool option = true;
             while (option)
             {
-
                 Console.WriteLine("What would you like to do?\n" 
-                    +"To change stocks, type '1'.\nTo change Stock quotes, type '2'.\n"
-                    +"To view your tracked stocks, type '3'.\nTo quit these options, type 'q'");
-                string response = Console.ReadLine();
+                    +"To change STOCKS, enter '1'.\nTo change stock QUOTES, enter '2'.\n"
+                    +"To view your tracked stocks, enter '3'.\n"
+                    +"To download a CSV file of your stock potfolio, enter '4'.\n"
+                    +"To grab tech-related articles from Reddit's StockMarket subreddit, enter '5'\n"
+                    +"To quit these options, enter 'Q'");
+                string response = Console.ReadLine().ToLower().Replace(" ","");
                 switch (response)
                 {
                     case "1":
-                        market.changeStocks(api);
+                        changeStocks(api);
                         break;
                     case "2":
-                        market.changeQuotes();
+                        changeQuotes(api);
                         break;
                     case "3":
                         viewStocks(api);
+                        break;
+                    case "4":
+                        api.downloadCsv();
+                        Console.WriteLine("\nA .csv file has been downloaded to your Downloads folder.\n");
+                        break;
+                    case "5":
+                        stockNews.showTechFinanceArticles();
                         break;
                     case "q":
                         option = false;
@@ -79,28 +87,29 @@ namespace StockTrk
             }
 
         }
-        public void promptChangeStocks(YahooFinance api)
+        public void changeStocks(YahooFinance api)
         {
-            Console.WriteLine("Would you like to change any stocks in your portfolio?");
-            answer = Console.ReadLine().Replace(" ","").ToLower();
-            if (answer == "yes")
-            {
-                market.changeStocks(api);
-            }
-            addStockInfo();
-            //Change the stocks that the user wants to see
+            string replacableStock;
+            string newStock;
+            string url;
+            Console.WriteLine("Which stock would you like to replace?");
+            replacableStock = Console.ReadLine();
+            Console.WriteLine("Which stock would you like to replace it with?");
+            newStock = Console.ReadLine();
+            url = api.YahooUrl;
+            api.YahooUrl = url.Replace(replacableStock, newStock);
+        }
+        public void changeQuotes(YahooFinance api)
+        {
+            string addQuotes;
+            Console.WriteLine("Which quotes would you like to add to your stocks?\n"
+                + "Don't use commas to seperate." + market.showCommonQuotes());
+            addQuotes = Console.ReadLine();
+            api.YahooUrl = api.YahooUrl + addQuotes;
         }
         public void viewStocks(YahooFinance api)
         {
-            //View stocks & info
             api.showData(api.YahooUrl);
         }
-        public void addStockInfo()
-        {
-            Console.WriteLine("Would you like to add stock quotes?");
-            answer = Console.ReadLine();
-            //Change grabbed stock info
-        }
-
     }
 }

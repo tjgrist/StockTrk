@@ -11,14 +11,13 @@ namespace StockTrk
     {
         static void Main(string[] args)
         {
+            Articles stockNews = new Articles();
             User user = new User();
             YahooFinance api = new YahooFinance();
-            while (true)//Set back to this: (user.Validated)
-            {
-                api.setURL(user);
-                user.promptOptions(api);
-                Console.ReadKey();
-            }
+
+            api.setURL(user);
+            user.promptOptions(api);
+            Console.ReadKey();
         }
     }
 }
