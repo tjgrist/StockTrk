@@ -42,7 +42,7 @@ namespace StockTrk
         {
             //Build the Yahoo! URL string from basic.
             baseUrl = "http://download.finance.yahoo.com/d/quotes.csv?s=";
-            Console.Write("Which stocks would you like to add?\nSeparate your stock symbols with commas." + market.showCommonStocks());
+            Console.Write("Which stocks would you like to view?\nSeparate your stock symbols with commas." + market.showCommonStocks());
             stocks = Console.ReadLine().Replace(" ","");
             Console.WriteLine("Add the stock info you would like to see.\n" + market.showCommonQuotes());
             stockQuotes = Console.ReadLine().Replace(" ","").Replace(",","");
@@ -50,7 +50,7 @@ namespace StockTrk
             return fullUrl;
         }
         
-        public void promptOptions()
+        public void promptOptions(YahooFinance api)
         {
             bool option = true;
             while (option)
@@ -63,13 +63,13 @@ namespace StockTrk
                 switch (response)
                 {
                     case "1":
-                        market.changeStocks();
+                        market.changeStocks(api);
                         break;
                     case "2":
                         market.changeQuotes();
                         break;
                     case "3":
-                        viewStocks();
+                        viewStocks(api);
                         break;
                     case "q":
                         option = false;
@@ -79,22 +79,21 @@ namespace StockTrk
             }
 
         }
-        public void promptChangeStocks()
+        public void promptChangeStocks(YahooFinance api)
         {
             Console.WriteLine("Would you like to change any stocks in your portfolio?");
             answer = Console.ReadLine().Replace(" ","").ToLower();
             if (answer == "yes")
             {
-                market.changeStocks();
+                market.changeStocks(api);
             }
             addStockInfo();
             //Change the stocks that the user wants to see
         }
-        public void viewStocks()
+        public void viewStocks(YahooFinance api)
         {
             //View stocks & info
-            YahooFinance account = new YahooFinance();
-            account.showData(account.Csv);
+            api.showData(api.YahooUrl);
         }
         public void addStockInfo()
         {

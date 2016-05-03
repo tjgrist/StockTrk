@@ -49,7 +49,6 @@
     <Compile Include="Stock.cs" />
     <Compile Include="User.cs" />
     <Compile Include="YahooFinance.cs" />
-    <Compile Include="YahooURL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
