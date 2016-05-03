@@ -14,9 +14,10 @@ namespace StockTrk
             Articles stockNews = new Articles();
             User user = new User();
             YahooFinance api = new YahooFinance();
+            Stock market = new Stock();
 
-            api.setURL(user);
-            user.promptOptions(api);
+            api.setURL(user, market);
+            user.promptOptions(api, market);
             Console.ReadKey();
         }
     }

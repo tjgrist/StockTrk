@@ -13,9 +13,9 @@ namespace StockTrk
         bool validated;
         string stocks;
         string stockQuotes;
-        string baseUrl;
+        public string baseUrl;
         string fullUrl;
-        Stock market = new Stock();
+        //Stock market = new Stock();
         Articles stockNews = new Articles();
 
         public User()
@@ -38,18 +38,19 @@ namespace StockTrk
             set { validated = value; }
         }
          
-        public string buildURL()
+        public string buildURL(Stock market)
         {
             baseUrl = "http://download.finance.yahoo.com/d/quotes.csv?s=";
             Console.Write("\nWhich STOCKS would you like to view?\nSeparate your stock symbols with commas." + market.showCommonStocks());
             stocks = Console.ReadLine().Replace(" ","");
             Console.WriteLine("Add the stock info you would like to see.\n" + market.showCommonQuotes());
             stockQuotes = Console.ReadLine().Replace(" ","").Replace(",","");
-            fullUrl = baseUrl + stocks + "&f=ns" + stockQuotes;
+            market.StockQuotes = stockQuotes;
+            fullUrl = baseUrl + stocks + "&f=" + stockQuotes;
             return fullUrl;
         }
         
-        public void promptOptions(YahooFinance api)
+        public void promptOptions(YahooFinance api, Stock market)
         {
             bool option = true;
             while (option)
@@ -67,10 +68,10 @@ namespace StockTrk
                         changeStocks(api);
                         break;
                     case "2":
-                        changeQuotes(api);
+                        changeQuotes(api, market);
                         break;
                     case "3":
-                        viewStocks(api);
+                        viewStocks(api, market);
                         break;
                     case "4":
                         api.downloadCsv();
@@ -99,17 +100,18 @@ namespace StockTrk
             url = api.YahooUrl;
             api.YahooUrl = url.Replace(replacableStock, newStock);
         }
-        public void changeQuotes(YahooFinance api)
+        public void changeQuotes(YahooFinance api, Stock market)
         {
             string addQuotes;
             Console.WriteLine("Which quotes would you like to add to your stocks?\n"
                 + "Don't use commas to seperate." + market.showCommonQuotes());
             addQuotes = Console.ReadLine();
+            market.analyzeQuotes(addQuotes);
             api.YahooUrl = api.YahooUrl + addQuotes;
         }
-        public void viewStocks(YahooFinance api)
+        public void viewStocks(YahooFinance api, Stock market)
         {
-            api.showData(api.YahooUrl);
+            api.showData(api.YahooUrl, market);
         }
     }
 }

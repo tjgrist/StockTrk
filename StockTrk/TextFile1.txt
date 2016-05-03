@@ -13,5 +13,5 @@ User can:
 ~can choose to get prompted when a stock dips below certain level
 
 Extras, if time allows: 
-~user can add another user that signs in (creates mock account) and goes through the above
+~user can add another user that signs in (creates mock account) and goes through the above (simply restarts program).
 ~Using Reddit API, grab trending finance articles about stocks which the user is tracking in StockTrk

@@ -10,11 +10,12 @@ namespace StockTrk
     class Stock : YahooFinance
     {
         List<string> stockList = new List<string>();
-        List<string> info = new List<string>();
-        //Add member variables for stock qoutes.
-        //char stockExchange = 'x';
-        //char askPrice = 'a';
-        //char buyPrice = 'b';
+        List<string> quotes = new List<string>();
+        //Add member variables for stock qoutes or iterate through uri substring for certain characters.
+        string stockQuotes;
+        char openPrice = 'o';
+        char askPrice = 'a';
+        char buyPrice = 'b';
 
         public void getInfo(string csvData)
         {
@@ -23,39 +24,77 @@ namespace StockTrk
             foreach (string stock in stockList)
             {
                 Console.WriteLine();
-                info = stock.Split(',').ToList();
-                foreach (string item in info)
-                {
-                    Console.WriteLine(checkQuote(item)); 
+
+                quotes = stock.Split(',').ToList(); //Quote is here. Match with index of character.
+
+
+
+                foreach (string namePrice in quotes)
+                {//This loop is only printing "name" for the first stock if it has 'inc'
+                    string quote = namePrice.Trim('"');
+                    if ((quote.Contains("Inc")) && (quotes.IndexOf(quote) == 0))
+                    {
+                        //quotes.Insert(0, quote);
+                        quote.Remove(quote.IndexOf("Inc"));
+                        Console.WriteLine("Name: "+quote);
+                    }
+                    else if (quotes.IndexOf(quote) == stockQuotes.IndexOf(openPrice))
+                    {
+                        Console.WriteLine("Today's open: $" + quote);
+                    }
+                    else
+                    {
+                        Console.WriteLine(checkQuote(quote));
+                    }
                 }
             }
         }
-        public string checkQuote(string item)
+        public string checkQuote(string quote)
         {
-            item = item.Trim('"');
-            if (item.EndsWith("%"))
+            if (quote.EndsWith("%"))
             {
-                return "Real-time percent change: " + item;
+                return "Real-time percent change: " + quote;
             }
-            if (Regex.IsMatch(item, @"\d+"))
+            if (Regex.IsMatch(quote, @"\d+"))
             {
-                return "$" + item;
+                return "$" + quote;
             }
             else
             {
-                return item;
+                return quote;
+            }
+        }
+        public void analyzeQuotes(string addQuotes)
+        {
+            stockQuotes = addQuotes;
+            foreach (char quote in addQuotes)
+            {    
             }
         }
         public string showCommonStocks()
         {
             return "\nSome common stocks:\nMSFT(Microsoft)\nFB(Facebook)\nGOOG(Google)\nAAPL(APPLE)\n"
                 + "BTCUSD=X(Bitcoin)\nYHOO(Yahoo!)\nTSLA(Tesla)\nTWTR(Twitter)\nADBE(Adobe)\n"
-                +"AMZN(Amazon)\nNFLX(Netflix)\nCRM(Salesforce)\nNYSE(New York Stock Exchange)\n";
+                +"AMZN(Amazon)\nNFLX(Netflix)\nCRM(Salesforce)\n";
         }
         public string showCommonQuotes()
         {
             return "Some common quote symbols:\n\n'x'(Stock Exchange)\n'a'(ask)\n'b'(buy)\n'o'(open)\n"
                 + "'p2'(percent change)\n'p'(previous close)\n'j'(52-week Low)\n'k'(52-week High)\n";
         }
+        public char OpenPrice
+        {
+            get { return openPrice; }
+            set { openPrice = value; }
+        }
+        public string StockQuotes
+        {
+            get { return stockQuotes; }
+            set { stockQuotes = value; }
+        }
+
+
+
+
     }
 }

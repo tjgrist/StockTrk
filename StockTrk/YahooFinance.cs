@@ -27,16 +27,15 @@ namespace StockTrk
             get { return yahooUrl; }
             set { yahooUrl = value; }
         }
-        public void setURL(User user)
+        public void setURL(User user, Stock market)
         {
-            yahooUrl = user.buildURL();
-            showData(yahooUrl);
+            yahooUrl = user.buildURL(market);
+            showData(yahooUrl, market);
         }
-        public void showData(string yahooUrl)
+        public void showData(string yahooUrl,Stock market)
         {
-            Stock stocks = new Stock();
             csvData = web.DownloadString(yahooUrl);
-            stocks.getInfo(csvData);
+            market.getInfo(csvData);
         }
         public void downloadCsv()
         {
