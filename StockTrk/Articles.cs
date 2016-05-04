@@ -11,7 +11,7 @@ namespace StockTrk
     {
         Reddit reddit = new Reddit();
 
-        public void showTechFinanceArticles()
+        public void showTechFinanceArticles(YahooFinance api)
         {
             //Take in stock choices of user, get their names, then grab articles from Reddit based on their names.
             var subreddit = reddit.GetSubreddit("/r/stockmarket");

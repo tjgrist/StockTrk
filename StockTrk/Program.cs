@@ -14,12 +14,20 @@ namespace StockTrk
             Articles stockNews = new Articles();
             User user = new User();
             YahooFinance api = new YahooFinance();
-            Stock market = new Stock();
+            Stocks market = new Stocks();
+            if (user.Validated)
+            {
+                Console.WriteLine("Welcome to Stocktrk, your personalized tech-stock tracker.");
+                api.setURL(user, market, api);
+                user.promptOptions(api, market);
+                Console.WriteLine("Thanks for using StockTrk!");
+                Console.ReadKey();
+            }
+            else
+            {
+                Main(args);
+            }
 
-            api.setURL(user, market);
-            user.promptOptions(api, market);
-            Console.WriteLine("Thanks for using StockTrk!");
-            Console.ReadKey();
         }
     }
 }

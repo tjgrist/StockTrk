@@ -9,7 +9,6 @@ User can:
 ~change the info they want to see of each stock
 ~sees updated console of stocks and info after user stock updates and changes. 
 ~sign in (Regex)
-
 ~can choose to get prompted when a stock dips below certain level
 
 Extras, if time allows: 
