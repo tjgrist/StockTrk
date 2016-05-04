@@ -15,17 +15,7 @@ namespace StockTrk
 
         public YahooFinance()
         {
-            //Can put potentially put User instance here.
-        }
-        public string Csv
-        {
-            get { return csvData; }
-            set { csvData = value; }
-        }
-        public string YahooUrl
-        {
-            get { return yahooUrl; }
-            set { yahooUrl = value; }
+            //
         }
         public void setURL(User user, Stock market)
         {
@@ -39,9 +29,18 @@ namespace StockTrk
         }
         public void downloadCsv()
         {
-            //Downloads to local directory.
             Uri uri = new Uri(YahooUrl);
             web.DownloadFileAsync(uri, @"C:\Downloads\StockTrkStocks.csv");
+        }
+        public string Csv
+        {
+            get { return csvData; }
+            set { csvData = value; }
+        }
+        public string YahooUrl
+        {
+            get { return yahooUrl; }
+            set { yahooUrl = value; }
         }
     }
 }

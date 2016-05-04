@@ -88,16 +88,16 @@ namespace StockTrk
         public void changeStocks(YahooFinance api)
         {
             Console.WriteLine("Which stock would you like to REPLACE or REMOVE?");
-            string replacableStock = Console.ReadLine();
+            string replacableStock = Console.ReadLine().ToUpper();
             Console.WriteLine("Press ENTER to remove this stock: {0}.\nOR, type the stock with which you'd like to replace {0}.",replacableStock);
-            string newStock = Console.ReadLine();
+            string newStock = Console.ReadLine().ToUpper();
             string url = api.YahooUrl;
             api.YahooUrl = url.Replace(replacableStock, newStock);
         }
         public void changeQuotes(YahooFinance api, Stock market)
         {
             Console.WriteLine("Which QUOTES would you like to add to your stocks?\n" + market.showCommonQuotes());
-            string addQuotes = Console.ReadLine();
+            string addQuotes = Console.ReadLine().ToUpper();
             api.YahooUrl = api.YahooUrl + addQuotes;
             market.StockQuotes = market.StockQuotes + addQuotes;
         }
@@ -107,8 +107,6 @@ namespace StockTrk
         }
         public void setPriceAlert(Stock market)
         {
-            Console.WriteLine("For which stock do you want an alert?");
-            string stock = Console.ReadLine();
             Console.WriteLine("What price would you like to be alerted at?");
             string priceDip = Console.ReadLine();
             market.AskPriceAlert = priceDip;           

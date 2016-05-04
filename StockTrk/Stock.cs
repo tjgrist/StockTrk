@@ -13,7 +13,6 @@ namespace StockTrk
         List<string> quotes = new List<string>();
         string stockQuotes;
         string askPriceAlert;
-        string alertStock;
         char openPrice = 'O';
         char previousPrice = 'P';
         char askPrice = 'A';
@@ -21,29 +20,20 @@ namespace StockTrk
         char yearLow = 'J';
         char yearHigh = 'K';
 
-
         public void getInfo(string csvData)
         {
-            Console.WriteLine("\nHere's the requested information about your stocks:");
+            Console.WriteLine("\nHere's your portfolio:");
             stockList = csvData.Split('\n').ToList();
             foreach (string stock in stockList)
             {
                 Console.WriteLine();
-
-                quotes = stock.Split(',').ToList(); //Splits stock name if contains 'Inc'.
-
-                foreach (string namePrice in quotes)
+                quotes = stock.Split(',').ToList();
+                foreach (string item in quotes)
                 {
-                    string quote = namePrice.Trim('"');
-                    if (quote.Contains(" Inc."))
-                    {
-                        quotes.Remove(quote);
-                    }
-                    else
-                    {
-                        Console.WriteLine(checkQuote(quote)); //Match with index of char.
-                    }
+                    string quote = item.Trim('"');                  
+                    Console.WriteLine(checkQuote(quote));
                 }
+                Console.WriteLine("Time: " + DateTime.Now);
             }
         }
         public string checkQuote(string quote)
@@ -51,6 +41,10 @@ namespace StockTrk
             if (Regex.IsMatch(quote, @"[A-Z]"))
             {
                 return quote;
+            }
+            else if (quote.EndsWith("%"))
+            {
+                return "Real-time percent change: " + quote;
             }
             else if (quotes.IndexOf(quote) == stockQuotes.IndexOf(openPrice))
             {
@@ -62,15 +56,7 @@ namespace StockTrk
             }
             else if (quotes.IndexOf(quote) == stockQuotes.IndexOf(askPrice))
             {
-                if (Convert.ToSingle(quote) <= Convert.ToSingle(askPriceAlert))
-                {                  
-                    return "ALERT! Your stock dipped below your set level!" + " It's at: $" + quote
-                        + " Your price alert was set to: $" + askPriceAlert;
-                }
-                else
-                {
-                    return "Asking: $" + quote;
-                }
+                return checkAlert(quote);
             }
             else if (quotes.IndexOf(quote) == stockQuotes.IndexOf(buyPrice))
             {
@@ -84,10 +70,6 @@ namespace StockTrk
             {
                 return "52-week high: $" + quote;
             }
-            else if (quote.EndsWith("%"))
-            {
-                return "Real-time percent change: " + quote;
-            }
             else if (Regex.IsMatch(quote, @"\d+"))
             {
                 return "$" + quote;
@@ -97,11 +79,23 @@ namespace StockTrk
                 return quote;
             }
         }
+        public string checkAlert(string quote)
+        {
+            if (Convert.ToSingle(quote) <= Convert.ToSingle(askPriceAlert))
+            {
+                return "ALERT! Your stock dipped below your set level!" + " It's at: $" + quote
+                    + " Your price alert was set to: $" + askPriceAlert;
+            }
+            else
+            {
+                return "Asking: $" + quote;
+            }
+        }
         public string showCommonStocks()
         {
             return "\nSome common stocks:\nMSFT (Microsoft)\nFB (Facebook)\nGOOG (Google)\nAAPL (APPLE)\n"
                 + "BTCUSD=X (Bitcoin)\nYHOO (Yahoo!)\nTSLA (Tesla)\nTWTR (Twitter)\nADBE (Adobe)\n"
-                +"AMZN (Amazon)\nNFLX (Netflix)\nCRM (Salesforce)\n";
+                + "AMZN (Amazon)\nNFLX (Netflix)\nCRM (Salesforce)\n";
         }
         public string showCommonQuotes()
         {

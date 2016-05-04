@@ -18,6 +18,7 @@ namespace StockTrk
 
             api.setURL(user, market);
             user.promptOptions(api, market);
+            Console.WriteLine("Thanks for using StockTrk!");
             Console.ReadKey();
         }
     }
