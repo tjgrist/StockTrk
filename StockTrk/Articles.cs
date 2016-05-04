@@ -26,13 +26,6 @@ namespace StockTrk
                     }
             }
         }
-        public void showRedditURL()
-        {
-            //Show URL of article.
-        }
-        public void showArticleSummary()
-        {
-            //Show the first few lines of the article. 
-        }
+        //Write filter results method.
     }
 }

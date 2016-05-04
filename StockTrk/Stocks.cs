@@ -105,7 +105,7 @@ namespace StockTrk
         }
         public string showCommonStocks()
         {
-            return "\n\nSome common stocks:\n\nMSFT = Microsoft\nFB = Facebook\nGOOG =Google\nAAPL = APPLE\n"
+            return "\n\nSome common stocks:\n\nMSFT = Microsoft\nFB = Facebook\nGOOG = Google\nAAPL = APPLE\n"
                 + "IBM = IBM\nTSLA = Tesla\nTWTR = Twitter\nADBE = Adobe\nATVI = Activision\n"
                 + "AMZN = Amazon\nNFLX = Netflix\nCRM = Salesforce\nINTC = Intel\nORCL = Oracle\n"
                 + "NVDA = NVIDIA Corp\nLNKD = LinkedIn\nYHOO = Yahoo!\nBTCUSD=X = Bitcoin\n"

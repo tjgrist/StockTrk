@@ -11,7 +11,6 @@ namespace StockTrk
     {
         static void Main(string[] args)
         {
-            Articles stockNews = new Articles();
             User user = new User();
             YahooFinance api = new YahooFinance();
             Stocks market = new Stocks();

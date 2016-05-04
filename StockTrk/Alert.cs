@@ -15,7 +15,7 @@ namespace StockTrk
         {
               if (Convert.ToSingle(quote) < Convert.ToSingle(askPriceAlert) && (symbol == alertStock))
                 {
-                    return "ALERT! Your stock dipped BELOW your set level! It's at: $" + quote
+                    return "*ALERT!* Your stock dipped BELOW your set level! It's at: $" + quote
                         + " Your price alert was set to: $" + askPriceAlert; 
                 }
                 else
