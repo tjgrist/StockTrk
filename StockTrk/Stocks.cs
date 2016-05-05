@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace StockTrk
 {
-    class Stocks : YahooFinance
+    class Stocks
     {
         Alert alert = new Alert();
         List<string> stockList = new List<string>();
@@ -23,6 +23,16 @@ namespace StockTrk
         char daysLow = 'G';
         char daysHigh = 'H';
 
+                public string StockQuotes
+        {
+            get { return stockQuotes; }
+            set { stockQuotes = value; }
+        }
+        public string Symbol
+        {
+            get { return symbol; }
+            set { symbol = value; }
+        }
         public void getInfo(string csvData)
         {
             Console.WriteLine("\nHere's your portfolio:");
@@ -117,16 +127,5 @@ namespace StockTrk
                 + "M = Day's Range\nG = Day's Low\nH = Day's High\nJ = 52-Week Low\nK = 52-Week High\n"
                 + "C = Change & Percent Change\nV = Volume\n";
         }
-        public string StockQuotes
-        {
-            get { return stockQuotes; }
-            set { stockQuotes = value; }
-        }
-        public string Symbol
-        {
-            get { return symbol; }
-            set { symbol = value; }
-        }
-
     }
 }

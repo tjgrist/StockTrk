@@ -9,11 +9,20 @@ namespace StockTrk
 {
     class YahooFinance
     {
-        protected string yahooUrl;
-        protected string csvData;
-        string downloadLocation = @"C:\Downloads\StockTrkStocks.csv";
-        WebClient web = new WebClient();
+        string yahooUrl;
+        string csvData;
+        string downloadLocation;
 
+        public string YahooUrl
+        {
+            get { return yahooUrl; }
+            set { yahooUrl = value; }
+        }
+        public string Csv
+        {
+            get { return csvData; }
+            set { csvData = value; }
+        }
         public YahooFinance()
         {
             yahooUrl = "http://download.finance.yahoo.com/d/quotes.csv?s=";
@@ -25,23 +34,16 @@ namespace StockTrk
         }
         public void showData(string yahooUrl,Stocks market)
         {
+            WebClient web = new WebClient();
             csvData = web.DownloadString(yahooUrl);
-            market.getInfo(csvData);
+            market.getInfo(csvData); 
         }
         public void downloadCsv()
         {
+            WebClient web = new WebClient();
             Uri uri = new Uri(YahooUrl);
+            downloadLocation = @"C:\Downloads\StockTrkStocks.csv";
             web.DownloadFileAsync(uri, downloadLocation);
-        }
-        public string Csv
-        {
-            get { return csvData; }
-            set { csvData = value; }
-        }
-        public string YahooUrl
-        {
-            get { return yahooUrl; }
-            set { yahooUrl = value; }
         }
     }
 }

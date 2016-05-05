@@ -18,7 +18,7 @@ namespace StockTrk
             {
                 Console.WriteLine("Welcome to Stocktrk, your personalized tech-stock tracker.");
                 api.setURL(user, market, api);
-                user.promptOptions(api, market);
+                user.displayOptions(api, market);
                 Console.WriteLine("Thanks for using StockTrk!");
                 Console.ReadKey();
             }

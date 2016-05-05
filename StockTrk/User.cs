@@ -17,6 +17,11 @@ namespace StockTrk
         string fullUrl;
         Articles stockNews = new Articles();
 
+        public bool Validated
+        {
+            get { return validated; }
+            set { validated = value; }
+        }
         public User()
         {
             Console.WriteLine("Sign in with your email:\n");
@@ -35,6 +40,7 @@ namespace StockTrk
             baseUrl = api.YahooUrl;
             Console.Write("\nWhich STOCKS would you like to view?\nSeparate your stock symbols with commas." + market.showCommonStocks());
             stocks = Console.ReadLine().ToUpper().Replace(" ","");
+            stockNews.StockWatch = stocks.Split(',').ToList();
             Console.WriteLine("Add the stock info you would like to see.\n" + market.showCommonQuotes());
             stockQuotes = Console.ReadLine().ToUpper().Replace(" ","").Replace(",","");
             market.StockQuotes = stockQuotes;
@@ -42,12 +48,12 @@ namespace StockTrk
             return fullUrl;
         }
         
-        public void promptOptions(YahooFinance api, Stocks market)
+        public void displayOptions(YahooFinance api, Stocks market)
         {
-            bool option = true;
-            while (option)
+            bool options = true;
+            while (options)
             {
-                showOptions();
+                printOptions();
                 string response = Console.ReadLine().ToLower().Replace(" ","");
                 switch (response)
                 {
@@ -62,17 +68,20 @@ namespace StockTrk
                         break;
                     case "4":
                         api.downloadCsv();
-                        Console.WriteLine("\nA .csv file has been downloaded to your Downloads folder.\n");
+                        Console.WriteLine("\nA .csv file was DOWNLOADED to your Downloads folder.\n");
                         break;
                     case "5":
-                        stockNews.showTechFinanceArticles(api);
+                        showRedditOptions();
                         break;
                     case "6":
                         setPriceAlert(market);
                         break;
                     case "q":
-                        option = false;
+                        options = false;
                         break;
+                    default:
+                        viewStocks(api, market);
+                        break;                        
                 }
 
             }
@@ -107,20 +116,33 @@ namespace StockTrk
             string priceDip = Console.ReadLine();
             market.setAskPriceAlert(priceDip);           
         }
-        public void showOptions()
+        public void showRedditOptions()
+        {
+            Console.WriteLine("Enter 1 to search tech-related articles.\n"
+                + "Enter 2 to search the subreddit for your tracked stocks.");
+            string input = Console.ReadLine();
+            switch (input)
+            {
+                case "1":
+                    stockNews.showTechFinanceArticles();
+                    break;
+                case "2":
+                    stockNews.searchUserStocks();
+                    break;
+                default:
+                    stockNews.searchUserStocks();
+                    break;
+            }
+        }
+        public void printOptions()
         {
             Console.WriteLine("What would you like to do?\n"
-            + "To CHANGE STOCKS, enter '1'.\nTo CHANGE stock QUOTES, enter '2'.\n"
-            + "To VIEW your TRACKED stocks, enter '3'.\n"
-            + "To DOWNLOAD a CSV file of your stock portfolio, enter '4'.\n"
-            + "To GRAB tech-related ARTICLES from Reddit's StockMarket subreddit, enter '5'\n"
-            + "SET a PRICE DIP ALERT with '6'\n"
+            + "To CHANGE STOCKS, enter: 1.\nTo CHANGE stock QUOTES, enter: 2.\n"
+            + "To VIEW your TRACKED stocks, enter: 3.\n"
+            + "To DOWNLOAD a CSV file of your stock portfolio, enter: 4.\n"
+            + "To SEARCH for ARTICLES from Reddit's StockMarket subreddit, enter: 5.\n"
+            + "SET a PRICE DIP ALERT with: 6\n"
             + "To QUIT these options, enter 'Q'");
-        }
-        public bool Validated
-        {
-            get { return validated; }
-            set { validated = value; }
         }
     }
 }
