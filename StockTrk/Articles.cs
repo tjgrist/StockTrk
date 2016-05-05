@@ -42,7 +42,6 @@ namespace StockTrk
                     {
                         Console.WriteLine(post.Title);
                         Console.WriteLine("Reddit post Link: " + post.Shortlink + "\n");
-                        Console.WriteLine(post.Domain);
                     }                    
                 }    
             }

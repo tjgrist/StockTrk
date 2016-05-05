@@ -41,7 +41,7 @@ namespace StockTrk
             baseUrl = api.YahooUrl;
             Console.Write("\nWhich STOCKS would you like to view?\nSeparate your stock symbols with commas." + market.showCommonStocks());
             stocks = Console.ReadLine().ToUpper().Replace(" ","");
-            stockNews.StockWatch = stocks.Split(',').ToList();
+            setStockList(stocks);
             Console.WriteLine("Add the stock info you would like to see.\n" + market.showCommonQuotes());
             stockQuotes = Console.ReadLine().ToUpper().Replace(" ","").Replace(",","");
             market.StockQuotes = "S" + stockQuotes;
@@ -133,6 +133,11 @@ namespace StockTrk
                     break;
             }
         }
+        private void setStockList(string stocks)
+        {
+            stockNews.StockWatch = stocks.Split(',').ToList();
+        }
+
         private void printOptions()
         {
             Console.WriteLine("What would you like to do?\n"
