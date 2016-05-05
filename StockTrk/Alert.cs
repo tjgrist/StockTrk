@@ -8,9 +8,9 @@ namespace StockTrk
 {
     class Alert
     {
-        string askPriceAlert;
         string alertStock;
-
+        string askPriceAlert;
+        
         public string checkAlert(string quote, string symbol)
         {
               if (Convert.ToSingle(quote) < Convert.ToSingle(askPriceAlert) && (symbol == alertStock))

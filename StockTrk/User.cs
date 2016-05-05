@@ -113,8 +113,8 @@ namespace StockTrk
             string alertStock = Console.ReadLine().ToUpper();
             market.setAlertStock(alertStock);
             Console.WriteLine("At what price (or lower) would you like an alert for {0}?",alertStock);
-            string priceDip = Console.ReadLine();
-            market.setAskPriceAlert(priceDip);        
+            string priceAlert = Console.ReadLine();
+            market.setAskPriceAlert(priceAlert);        
         }
         private void showRedditOptions()
         {
