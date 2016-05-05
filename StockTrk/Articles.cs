@@ -26,13 +26,8 @@ namespace StockTrk
                     {
                         Console.WriteLine(post.SubredditName + "\n" + post.Title);
                         Console.WriteLine("Reddit Score: " + post.Score);
-                        Console.WriteLine("Reddit post Link: " + post.Shortlink);
-                        Console.WriteLine("Original Article link: " + post.Url);                       
+                        Console.WriteLine("Reddit post Link: " + post.Shortlink + "\n");                    
                     }
-                else
-                {
-                    Console.WriteLine("Sorry. No articles were found given that match your parameters");
-                }
             }
         }
         public void searchUserStocks()
@@ -46,8 +41,7 @@ namespace StockTrk
                     if (post.Title.Contains(ticker))
                     {
                         Console.WriteLine(post.Title);
-                        Console.WriteLine("Reddit post Link: " + post.Shortlink);
-                        Console.WriteLine("Original Article link: " + post.Url);
+                        Console.WriteLine("Reddit post Link: " + post.Shortlink + "\n");
                     }                       
                 }
             }

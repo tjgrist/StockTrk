@@ -22,6 +22,7 @@ namespace StockTrk
         char yearHigh = 'K';
         char daysLow = 'G';
         char daysHigh = 'H';
+        char earningsPerShare = 'E';
 
         public string StockQuotes
         {
@@ -35,7 +36,6 @@ namespace StockTrk
         }
         public void displayStockInfo(string csvData)
         {
-            string stockName;
             Console.WriteLine("\nHere's your portfolio:");
             stockList = csvData.Split('\n').ToList();
             foreach (string stock in stockList)
@@ -64,6 +64,10 @@ namespace StockTrk
             else if (Regex.IsMatch(quote, @"\d+\.\d+\s\-\s\d+\.\d+"))
             {
                 return "Today's range: $" + quote;
+            }
+            else if (Regex.IsMatch(quote, @"\d+[:]"))
+            {
+                return "Last trade time and price: " + quote;
             }
             else if (quotes.IndexOf(quote) == stockQuotes.IndexOf(openPrice))
             {
@@ -96,8 +100,12 @@ namespace StockTrk
             else if (quotes.IndexOf(quote) == stockQuotes.IndexOf(askPrice))
             {
                 return alert.checkAlert(quote, symbol);
-            }        
-            else if (Regex.IsMatch(quote, @"\d+"))
+            }  
+            else if (quotes.IndexOf(quote) == stockQuotes.IndexOf(earningsPerShare))
+            {
+                return "Earnings per share: $" + quote;
+            }
+            else if (Regex.IsMatch(quote, @"\d+[^.]\d+"))
             {
                 return "Volume: " + quote;
             }
@@ -124,9 +132,9 @@ namespace StockTrk
         }
         public string showCommonQuotes()
         {
-            return "Some common quote symbols:\n\nS = Ticker\nA = Ask\nB = Buy\nO = Open\nP = Previous Close\n"
+            return "Some common quote symbols:\n\nA = Ask\nB = Buy\nO = Open\nP = Previous Close\n"
                 + "M = Day's Range\nG = Day's Low\nH = Day's High\nJ = 52-Week Low\nK = 52-Week High\n"
-                + "C = Change & Percent Change\nV = Volume\n";
+                + "C = Change & Percent Change\nV = Volume\nE = Earnings/share\nL = Last trade time and price\n";
         }
     }
 }

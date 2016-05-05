@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Net;
 
 namespace StockTrk
 {
@@ -32,7 +33,7 @@ namespace StockTrk
             }
             else
             {
-                Console.WriteLine("Invalid");
+                Console.WriteLine("Invalid entry.\n");
             }
         }
         public string buildURL(Stocks market, YahooFinance api)
@@ -43,8 +44,8 @@ namespace StockTrk
             stockNews.StockWatch = stocks.Split(',').ToList();
             Console.WriteLine("Add the stock info you would like to see.\n" + market.showCommonQuotes());
             stockQuotes = Console.ReadLine().ToUpper().Replace(" ","").Replace(",","");
-            market.StockQuotes = stockQuotes;
-            fullUrl = baseUrl + stocks + "&f=" + stockQuotes;
+            market.StockQuotes = "S" + stockQuotes;
+            fullUrl = baseUrl + stocks + "&f=S" + stockQuotes;
             return fullUrl;
         }
         
@@ -80,14 +81,13 @@ namespace StockTrk
                         options = false;
                         break;
                     default:
-                        viewStocks(api, market);
                         break;                        
                 }
 
             }
 
         }
-        public void changeStocks(YahooFinance api)
+        private void changeStocks(YahooFinance api)
         {
             Console.WriteLine("Which stock would you like to REPLACE or REMOVE?");
             string replacableStock = Console.ReadLine().ToUpper();
@@ -96,27 +96,27 @@ namespace StockTrk
             string url = api.YahooUrl;
             api.YahooUrl = url.Replace(replacableStock, newStock);
         }
-        public void changeQuotes(YahooFinance api, Stocks market)
+        private void changeQuotes(YahooFinance api, Stocks market)
         {
             Console.WriteLine("Which QUOTES would you like to add to your stocks?\n" + market.showCommonQuotes());
             string addQuotes = Console.ReadLine().ToUpper();
             api.YahooUrl = api.YahooUrl + addQuotes;
             market.StockQuotes = market.StockQuotes + addQuotes;
         }
-        public void viewStocks(YahooFinance api, Stocks market)
+        private void viewStocks(YahooFinance api, Stocks market)
         {
             api.showData(api.YahooUrl, market);
         }
-        public void setPriceAlert(Stocks market)
+        private void setPriceAlert(Stocks market)
         {
             Console.WriteLine("For which stock would you like an alert?");
             string alertStock = Console.ReadLine().ToUpper();
             market.setAlertStock(alertStock);
             Console.WriteLine("At what price (or lower) would you like an alert for {0}?",alertStock);
             string priceDip = Console.ReadLine();
-            market.setAskPriceAlert(priceDip);           
+            market.setAskPriceAlert(priceDip);        
         }
-        public void showRedditOptions()
+        private void showRedditOptions()
         {
             Console.WriteLine("Enter 1 to search tech-related articles.\n"
                 + "Enter 2 to search the subreddit for your tracked stocks.");
@@ -130,11 +130,10 @@ namespace StockTrk
                     stockNews.searchUserStocks();
                     break;
                 default:
-                    stockNews.searchUserStocks();
                     break;
             }
         }
-        public void printOptions()
+        private void printOptions()
         {
             Console.WriteLine("What would you like to do?\n"
             + "Enter 1 to CHANGE STOCKS.\n"
