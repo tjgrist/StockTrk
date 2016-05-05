@@ -23,7 +23,7 @@ namespace StockTrk
         char daysLow = 'G';
         char daysHigh = 'H';
 
-                public string StockQuotes
+        public string StockQuotes
         {
             get { return stockQuotes; }
             set { stockQuotes = value; }
@@ -33,8 +33,9 @@ namespace StockTrk
             get { return symbol; }
             set { symbol = value; }
         }
-        public void getInfo(string csvData)
+        public void displayStockInfo(string csvData)
         {
+            string stockName;
             Console.WriteLine("\nHere's your portfolio:");
             stockList = csvData.Split('\n').ToList();
             foreach (string stock in stockList)
@@ -43,7 +44,7 @@ namespace StockTrk
                 quotes = stock.Split(',').ToList();
                 foreach (string item in quotes)
                 {
-                    string quote = item.Trim('"');                  
+                    string quote = item.Trim('"');
                     Console.WriteLine(getQuoteType(quote));
                 }
             }

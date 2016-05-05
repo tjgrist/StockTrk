@@ -36,7 +36,7 @@ namespace StockTrk
         {
             WebClient web = new WebClient();
             csvData = web.DownloadString(yahooUrl);
-            market.getInfo(csvData); 
+            market.displayStockInfo(csvData); 
         }
         public void downloadCsv()
         {

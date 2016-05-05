@@ -137,11 +137,12 @@ namespace StockTrk
         public void printOptions()
         {
             Console.WriteLine("What would you like to do?\n"
-            + "To CHANGE STOCKS, enter: 1.\nTo CHANGE stock QUOTES, enter: 2.\n"
-            + "To VIEW your TRACKED stocks, enter: 3.\n"
-            + "To DOWNLOAD a CSV file of your stock portfolio, enter: 4.\n"
-            + "To SEARCH for ARTICLES from Reddit's StockMarket subreddit, enter: 5.\n"
-            + "SET a PRICE DIP ALERT with: 6\n"
+            + "Enter 1 to CHANGE STOCKS.\n"
+            + "Enter 2 to CHANGE stock QUOTES.\n"
+            + "Enter 3 to VIEW your TRACKED stocks.\n"
+            + "Enter 4 to DOWNLOAD a CSV file of your stock portfolio.\n"
+            + "Enter 5 to SEARCH for ARTICLES from Reddit's StockMarket subreddit.\n"
+            + "Enter 6 to SET a PRICE DIP ALERT for a specific stock.\n"
             + "To QUIT these options, enter 'Q'");
         }
     }

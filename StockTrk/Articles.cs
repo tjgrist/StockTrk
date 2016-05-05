@@ -17,7 +17,7 @@ namespace StockTrk
             set { stockWatch = value; }
         }
         public void showTechFinanceArticles()
-        {            //Take in stock choices of user, get their names, then grab articles from Reddit based on their names.
+        {
             Reddit reddit = new Reddit();
             var subreddit = reddit.GetSubreddit("/r/stockmarket");
             foreach (var post in subreddit.Hot.Take(200))
@@ -35,7 +35,6 @@ namespace StockTrk
                 }
             }
         }
-        //Write filter results method.
         public void searchUserStocks()
         {
             Reddit reddit = new Reddit();

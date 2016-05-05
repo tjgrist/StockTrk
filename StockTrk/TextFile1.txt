@@ -14,3 +14,39 @@ User can:
 Extras, if time allows: 
 ~user can add another user that signs in (creates mock account) and goes through the above (simply restarts program).
 ~Using Reddit API, grab trending finance articles about stocks which the user is tracking in StockTrk
+
+       public void displayStockInfo(string csvData)
+        {
+            string stockName;
+            Console.WriteLine("\nHere's your portfolio:");
+            stockList = csvData.Split('\n').ToList();
+            foreach (string stock in stockList)
+            {
+                Console.WriteLine();
+                if (stock.Contains(", Inc.") || stock.Contains(", Inc"))
+                {
+                    string[] namedStock = stock.Split(',');
+                    stockName = String.Join(", ", namedStock, 0, 2);
+                    quotes.Add(stockName);
+                    for (int i = 2; i <= (namedStock.Count() - 1); i++)
+                    {
+                        quotes.Add(namedStock[i]);
+                    }
+                        foreach (string item in quotes)
+                        {
+                            string quote = item.Trim('"');
+                            Console.WriteLine(getQuoteType(quote));
+                        }
+                }
+                else
+                {
+                    quotes = stock.Split(',').ToList();
+                    foreach (string item in quotes)
+                    {
+                        string quote = item.Trim('"');
+                        Console.WriteLine(getQuoteType(quote));
+                    }
+                }
+            }
+            Console.WriteLine("TIME: " + DateTime.Now + "\n");
+        }
