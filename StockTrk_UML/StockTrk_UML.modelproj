@@ -29,6 +29,13 @@
       <SubType>Content</SubType>
       <DependentUpon>UMLClassDiagram1.classdiagram</DependentUpon>
     </Content>
+    <Content Include="UMLClassDiagramStockTrk.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UMLClassDiagramStockTrk.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>UMLClassDiagramStockTrk.classdiagram</DependentUpon>
+    </Content>
     <Folder Include="ModelDefinition\" />
     <Content Include="ModelDefinition\StockTrk_UML.uml">
       <SubType>Content</SubType>

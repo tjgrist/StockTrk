@@ -32,7 +32,279 @@
         name="User"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="08994eb9-3333-498f-92b9-987cfcd865ed"
+            name="email"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="b3edcdc6-c631-4f01-827e-f1539c3767f3"
+                LastKnownName="string"
+                LastKnownLocation="StockTrk_UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="3af9dac0-14ff-4fcc-9d67-cae9f0215bf3"
+            name="stocks"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="b3edcdc6-c631-4f01-827e-f1539c3767f3"
+                LastKnownName="string"
+                LastKnownLocation="StockTrk_UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="62e48424-94c9-4920-9cba-10c26c8d7a66"
+            name="validated"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="9cf39090-87e0-4ebc-ac19-372e6a196b16"
+                LastKnownName="bool"
+                LastKnownLocation="StockTrk_UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="6e3d668f-ed8e-40d9-b354-fd815e334c78"
+            name="stockCharacters"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="b3edcdc6-c631-4f01-827e-f1539c3767f3"
+                LastKnownName="string"
+                LastKnownLocation="StockTrk_UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="0678cd8a-cd4c-4543-9c23-d083c6e24c63"
+            name="stockNews"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="b75520f9-11ce-4774-8824-ae2e1d59962c"
+                LastKnownName="Articles()"
+                LastKnownLocation="StockTrk_UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="40968689-8ff9-46fe-b1ac-49a5b0daf09d"
+            name="fullUrl"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="b3edcdc6-c631-4f01-827e-f1539c3767f3"
+                LastKnownName="string"
+                LastKnownLocation="StockTrk_UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="0896805f-5fec-433e-9c66-4bd5fa504d49"
+            name="baseUrl"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="b3edcdc6-c631-4f01-827e-f1539c3767f3"
+                LastKnownName="string"
+                LastKnownLocation="StockTrk_UML.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="17489e7f-aba8-482b-aeb5-a356e0a916cb"
+            name="Validated : bool"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="36ad2963-121b-4f64-b560-73bfa6c3fbc0"
+            name="Operation2"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="69060081-0a08-47e3-89eb-efe4d6d0ba45"
+            name="Operation3"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="b085331f-e443-4b27-8583-50505353f81c"
+            name="Operation4"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="e4a5ba60-6dc5-4b89-a065-b35f3bd2703a"
+            name="Operation5"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="c082be92-732e-4b42-97b4-81425e1d0836"
+            name="Operation6"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="82e29619-ebd2-4b31-b40b-e7f1e8dfbdae"
+            name="Operation7"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="8b10c38e-718a-4a3e-86ac-4e533ba72797"
+            name="Operation8"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="d4bae69e-89c2-4b9e-b0a2-ffba8d6ca07f"
+            name="Operation9"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="1ce40574-caa7-4699-9103-b4cc0a94ebfa"
+            name="User"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3d5e1eba-b2cd-4670-aa26-d66e7ce250d2"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="d1016016-86d4-4cb3-85c7-86a9c03e7ee6"
+                      LastKnownName="constructor"
+                      LastKnownLocation="StockTrk_UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="2fe225d0-aae2-452c-89d1-f80f37ac05f1"
+            name="buildUrl"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f9239861-70f0-43ef-b668-57611fb33b17"
+                  name="Stocks"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="37d1a088-5d83-4b77-844d-41487bbd5e42"
+                  name="YahooFinance"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a32e5768-a0df-4437-82f5-05c0566312eb"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="b3edcdc6-c631-4f01-827e-f1539c3767f3"
+                      LastKnownName="string"
+                      LastKnownLocation="StockTrk_UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
@@ -49,6 +321,34 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="fcf316ba-bf4b-4673-95c7-d1142ca25be0"
+        name="Alert"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="b3edcdc6-c631-4f01-827e-f1539c3767f3"
+        name="string" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="9cf39090-87e0-4ebc-ac19-372e6a196b16"
+        name="bool" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="b75520f9-11ce-4774-8824-ae2e1d59962c"
+        name="Articles()" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="d1016016-86d4-4cb3-85c7-86a9c03e7ee6"
+        name="constructor" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

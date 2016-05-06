@@ -9,7 +9,7 @@ namespace StockTrk
 {
     class Stocks
     {
-        Alert alert = new Alert();
+        public Alert alert = new Alert();
         List<string> stockList = new List<string>();
         List<string> quotes = new List<string>();
         string stockQuotes;
@@ -113,14 +113,6 @@ namespace StockTrk
             {
                 return quote;
             }
-        }
-        public void setAskPriceAlert(string priceDip)
-        {
-            alert.AskPriceAlert = priceDip;
-        }
-        public void setAlertStock(string alertStock)
-        {
-            alert.AlertStock = alertStock;
         }
         public string showCommonStocks()
         {

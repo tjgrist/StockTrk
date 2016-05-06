@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RedditSharp;
+using System.Diagnostics;
 
 namespace StockTrk
 {
@@ -20,7 +21,7 @@ namespace StockTrk
         {
             Reddit reddit = new Reddit();
             var subreddit = reddit.GetSubreddit("/r/stockmarket");
-            foreach (var post in subreddit.Hot.Take(200))
+            foreach (var post in subreddit.Hot.Take(50))
             {
                 if (post.Title.ToLower().Contains("tech"))
                     {
@@ -34,7 +35,7 @@ namespace StockTrk
         {
             Reddit reddit = new Reddit();
             var subreddit = reddit.GetSubreddit("/r/stockmarket");
-            foreach (var post in subreddit.New.Take(200))
+            foreach (var post in subreddit.New.Take(50))
             {
                 foreach (string ticker in stockWatch)
                 {
@@ -42,6 +43,16 @@ namespace StockTrk
                     {
                         Console.WriteLine(post.Title);
                         Console.WriteLine("Reddit post Link: " + post.Shortlink + "\n");
+                        Console.WriteLine("Enter 1 to launch this article.\nPress ENTER to continue.");
+                        string launch = Console.ReadLine();
+                        switch (launch)
+                        {
+                            case "1":
+                                Process.Start(post.Shortlink);
+                                break;
+                            default:
+                                continue;
+                        }
                     }                    
                 }    
             }
@@ -58,9 +69,10 @@ namespace StockTrk
             {
                 if (post.Score > 500)
                 {
-                    Console.WriteLine(post.Title + "\n" +  post.Shortlink + "\n"); 
+                    Console.WriteLine(post.Title + "\n" +  post.Shortlink + "\n");
                 }
             }
+
         }
     }
 }

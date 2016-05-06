@@ -13,8 +13,8 @@ namespace StockTrk
         string email;
         bool validated;
         string stocks;
-        string stockQuotes;
-        public string baseUrl;
+        string stockCharacters;
+        string baseUrl;
         string fullUrl;
         Articles stockNews = new Articles();
 
@@ -43,9 +43,9 @@ namespace StockTrk
             stocks = Console.ReadLine().ToUpper().Replace(" ","");
             setStockList(stocks);
             Console.WriteLine("Add the stock info you would like to see.\n" + market.showCommonQuotes());
-            stockQuotes = Console.ReadLine().ToUpper().Replace(" ","").Replace(",","");
-            market.StockQuotes = "S" + stockQuotes;
-            fullUrl = baseUrl + stocks + "&f=S" + stockQuotes;
+            stockCharacters = Console.ReadLine().ToUpper().Replace(" ","").Replace(",","");
+            market.StockQuotes = "S" + stockCharacters;
+            fullUrl = baseUrl + stocks + "&f=S" + stockCharacters;
             return fullUrl;
         }
         
@@ -91,15 +91,41 @@ namespace StockTrk
         {
             Console.WriteLine("Which stock would you like to REPLACE or REMOVE?");
             string replacableStock = Console.ReadLine().ToUpper();
-            Console.WriteLine("Press ENTER to remove this stock: {0}.\nOR, type the stock with which you'd like to replace {0}.", replacableStock);
+            Console.WriteLine("Press ENTER to remove this stock: {0}.\nOR, type the stock(s) with which you'd like to replace {0}.", replacableStock);
             string newStock = Console.ReadLine().ToUpper();
             string url = api.YahooUrl;
             api.YahooUrl = url.Replace(replacableStock, newStock);
         }
         private void changeQuotes(YahooFinance api, Stocks market)
         {
-            Console.WriteLine("Which QUOTES would you like to add to your stocks?\n" + market.showCommonQuotes());
-            string addQuotes = Console.ReadLine().ToUpper();
+            Console.WriteLine("Enter 1 to REPLACE quote(s).\nEnter 2 to ADD quotes.");
+            string response = Console.ReadLine();
+            switch (response)
+            {
+                case "1":
+                    replaceQuotes(api, market);
+                    break;
+                case "2":
+                    addQuotes(api, market);
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void replaceQuotes(YahooFinance api, Stocks market)
+        {
+            Console.WriteLine("Which QUOTE(s) would you like to REPLACE or REMOVE?");
+            string replacementQuote = Console.ReadLine().ToUpper().Replace(" ", "").Replace(",", "");
+            Console.WriteLine("Which Quote(s) would you like to replace it with?\nPress ENTER to remove your input quotes.");
+            string newQuote = Console.ReadLine().ToUpper().Replace(" ", "").Replace(",", "");
+            api.YahooUrl = api.YahooUrl.Remove(api.YahooUrl.IndexOf(market.StockQuotes));
+            market.StockQuotes = market.StockQuotes.Replace(replacementQuote, newQuote);
+            api.YahooUrl = api.YahooUrl + market.StockQuotes;
+        }
+        private void addQuotes(YahooFinance api, Stocks market)
+        {
+            Console.WriteLine("Which QUOTE(s) would you like to ADD?\n" + market.showCommonQuotes());
+            string addQuotes = Console.ReadLine().ToUpper().Replace(" ", "").Replace(",", "");
             api.YahooUrl = api.YahooUrl + addQuotes;
             market.StockQuotes = market.StockQuotes + addQuotes;
         }
@@ -111,10 +137,10 @@ namespace StockTrk
         {
             Console.WriteLine("For which stock would you like an alert?");
             string alertStock = Console.ReadLine().ToUpper();
-            market.setAlertStock(alertStock);
+            market.alert.AlertStock = alertStock;
             Console.WriteLine("At what price (or lower) would you like an alert for {0}?",alertStock);
             string priceAlert = Console.ReadLine();
-            market.setAskPriceAlert(priceAlert);        
+            market.alert.AskPriceAlert = priceAlert;       
         }
         private void showRedditOptions()
         {

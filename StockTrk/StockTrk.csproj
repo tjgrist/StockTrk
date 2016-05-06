@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagramStockTrk.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
