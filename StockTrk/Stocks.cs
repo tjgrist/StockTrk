@@ -45,25 +45,23 @@ namespace StockTrk
                 {
                     quotes = stock.Replace(" ", "").Split(',').ToList();
                     quotes.RemoveAt(1);
-                    foreach (string item in quotes)
-                    {
-                        string quote = item.Trim('"');
-                        Console.WriteLine(getQuoteType(quote));
-
-                    }
+                    loopQuotes(quotes);
                 }
                 else
                 {
                     quotes = stock.Split(',').ToList();
-                    foreach (string item in quotes)
-                    {
-                        string quote = item.Trim('"');
-                        Console.WriteLine(getQuoteType(quote));
-                    }
+                    loopQuotes(quotes);
                 }
-
             }
             Console.WriteLine("TIME: " + DateTime.Now + "\n");
+        }
+        private void loopQuotes(List<string> quotes)
+        {
+            foreach (string item in quotes)
+            {
+                string quote = item.Trim('"');
+                Console.WriteLine(getQuoteType(quote));
+            }
         }
         private string getQuoteType(string quote)
         {
@@ -76,7 +74,7 @@ namespace StockTrk
             {
                 return "Change and percent change: " + quote;
             }
-            else if (Regex.IsMatch(quote, @"\d+\.\d+\s\-\s\d+\.\d+"))
+            else if (Regex.IsMatch(quote, @"\d+\.\d+\-\d+\.\d+") || Regex.IsMatch(quote, @"\d+\.\d+\s\-\s\d+\.\d+"))
             {
                 return "Today's range: $" + quote;
             }
