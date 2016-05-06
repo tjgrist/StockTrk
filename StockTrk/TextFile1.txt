@@ -50,3 +50,21 @@ Extras, if time allows:
             }
             Console.WriteLine("TIME: " + DateTime.Now + "\n");
         }
+
+
+		        public void displayStockInfo(string csvData)
+        {
+            Console.WriteLine("\nHere's your portfolio:");
+            stockList = csvData.Split('\n').ToList();
+            foreach (string stock in stockList)
+            {
+                Console.WriteLine();
+                quotes = stock.Split(',').ToList();
+                foreach (string item in quotes)
+                {
+                    string quote = item.Trim('"');
+                    Console.WriteLine(getQuoteType(quote));
+                }
+            }
+            Console.WriteLine("Current TIME: " + DateTime.Now + "\n");
+        }

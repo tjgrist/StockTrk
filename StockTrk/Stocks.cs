@@ -41,12 +41,27 @@ namespace StockTrk
             foreach (string stock in stockList)
             {
                 Console.WriteLine();
-                quotes = stock.Split(',').ToList();
-                foreach (string item in quotes)
+                if (stock.Contains(", Inc.") || stock.Contains(", Inc"))
                 {
-                    string quote = item.Trim('"');
-                    Console.WriteLine(getQuoteType(quote));
+                    quotes = stock.Replace(" ", "").Split(',').ToList();
+                    quotes.RemoveAt(1);
+                    foreach (string item in quotes)
+                    {
+                        string quote = item.Trim('"');
+                        Console.WriteLine(getQuoteType(quote));
+
+                    }
                 }
+                else
+                {
+                    quotes = stock.Split(',').ToList();
+                    foreach (string item in quotes)
+                    {
+                        string quote = item.Trim('"');
+                        Console.WriteLine(getQuoteType(quote));
+                    }
+                }
+
             }
             Console.WriteLine("TIME: " + DateTime.Now + "\n");
         }
@@ -65,7 +80,7 @@ namespace StockTrk
             {
                 return "Today's range: $" + quote;
             }
-            else if (Regex.IsMatch(quote, @"\d+[:]"))
+            else if (Regex.IsMatch(quote, @"\d+\:"))
             {
                 return "Last trade time and price: " + quote;
             }
@@ -127,6 +142,38 @@ namespace StockTrk
             return "Some common quote symbols:\n\nA = Ask\nB = Buy\nO = Open\nP = Previous Close\n"
                 + "M = Day's Range\nG = Day's Low\nH = Day's High\nJ = 52-Week Low\nK = 52-Week High\n"
                 + "C = Change & Percent Change\nV = Volume\nE = Earnings/share\nL = Last trade time and price\n";
+        }
+
+        public void showStockInfo(string csvData)
+        {
+            Console.WriteLine("\nHere's your portfolio:");
+            stockList = csvData.Split('\n').ToList();
+            foreach (string stock in stockList)
+            {
+                Console.WriteLine();
+                if (stock.Contains(", Inc.") || stock.Contains(", Inc"))
+                {
+                    quotes = stock.Replace(" ", "").Split(',').ToList();
+                    quotes.RemoveAt(1);
+                    foreach (string item in quotes)
+                    {
+                        string quote = item.Trim('"');
+                        Console.WriteLine(getQuoteType(quote));
+                        
+                    }
+                }
+                else
+                {
+                    quotes = stock.Split(',').ToList();
+                    foreach (string item in quotes)
+                    {
+                        string quote = item.Trim('"');
+                        Console.WriteLine(getQuoteType(quote));
+                    }
+                }
+               
+            }
+            Console.WriteLine("TIME: " + DateTime.Now + "\n");
         }
     }
 }

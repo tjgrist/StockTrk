@@ -41,18 +41,9 @@ namespace StockTrk
                 {
                     if (post.Title.Contains(ticker))
                     {
-                        Console.WriteLine(post.Title);
+                        Console.WriteLine("Article Title: " + post.Title);
                         Console.WriteLine("Reddit post Link: " + post.Shortlink + "\n");
-                        Console.WriteLine("Enter 1 to launch this article.\nPress ENTER to continue.");
-                        string launch = Console.ReadLine();
-                        switch (launch)
-                        {
-                            case "1":
-                                Process.Start(post.Shortlink);
-                                break;
-                            default:
-                                continue;
-                        }
+                        launchArticle(post.Shortlink);
                     }                    
                 }    
             }
@@ -60,6 +51,19 @@ namespace StockTrk
                 {
                     getBitcoinArticles(reddit); 
                 }
+        }
+        private void launchArticle(string shortlink)
+        {
+            Console.WriteLine("Enter 1 to launch this article.\nPress ENTER to continue.");
+            string launch = Console.ReadLine();
+            switch (launch)
+            {
+                case "1":
+                    Process.Start(shortlink);
+                    break;
+                default:
+                    break;
+            }
         }
         private void getBitcoinArticles(Reddit reddit)
         {

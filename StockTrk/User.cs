@@ -44,8 +44,8 @@ namespace StockTrk
             setStockList(stocks);
             Console.WriteLine("Add the stock info you would like to see.\n" + market.showCommonQuotes());
             stockCharacters = Console.ReadLine().ToUpper().Replace(" ","").Replace(",","");
-            market.StockQuotes = "S" + stockCharacters;
-            fullUrl = baseUrl + stocks + "&f=S" + stockCharacters;
+            market.StockQuotes = "NS" + stockCharacters;
+            fullUrl = baseUrl + stocks + "&f=NS" + stockCharacters;
             return fullUrl;
         }
         
