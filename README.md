@@ -16,14 +16,20 @@ to which figure.
 
 5. The user is then given six options: 
 -Change Stocks in their portfolio either by replacing certain stocks or adding more. 
+
 -Change quotes in their portfolio either by replacing certain quotes or adding more. 
+
 -View their current/updated portfolio.
+
 -Download a .csv file of their portfolio to their local machine (using WebClient). 
+
 -Search Reddit (using RedditSharp API integration)
 for trending articles about any of the user's tracked stocks. The user can also launch any
 of the articles to a browser from the application by entering a command.
 The user also has the option to search Reddit more generally for treding stockMarket topics.
+
 -The user can also add a price alert for any of their stocks, at which they'll be notified if the stock 
 dips below the input price.
 
-6. The last option is simply to quit the program.
+6. The above options and program will loop until the user enters 'Q' to quit.
+
