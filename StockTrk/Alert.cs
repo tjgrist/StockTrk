@@ -10,7 +10,16 @@ namespace StockTrk
     {
         string alertStock;
         string askPriceAlert;
-        
+        public string AskPriceAlert
+        {
+            get { return askPriceAlert; }
+            set { askPriceAlert = value; }
+        }
+        public string AlertStock
+        {
+            get { return alertStock; }
+            set { alertStock = value; }
+        }        
         public string checkAlert(string quote, string symbol)
         {
               if (Convert.ToSingle(quote) < Convert.ToSingle(askPriceAlert) && (symbol == alertStock))
@@ -23,15 +32,6 @@ namespace StockTrk
                     return "Asking: $" + quote; 
                 }            
         }
-        public string AskPriceAlert
-        {
-            get { return askPriceAlert; }
-            set { askPriceAlert = value; }
-        }
-        public string AlertStock
-        {
-            get { return alertStock; }
-            set { alertStock = value; }
-        }
+
     }
 }
