@@ -165,7 +165,6 @@ namespace StockTrk
             foreach (string stock in stocksToAdd)
             {
                 stockNews.StockWatch.Add(stock);
-                Console.WriteLine(stock);
             }
         }
         private void printOptionString()

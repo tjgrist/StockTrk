@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Comment CommentText="The user is able to change the Yahoo Finance API string, as well as set alerts when a selected stock dips below a certain price point. The user can also choose to change stocks, change quotes, and retrieve articles from reddit based on the stocks in the user's built API string. ">
-    <Position X="2.608" Y="4.083" Height="2.242" Width="1.7" />
+    <Position X="0.508" Y="6.066" Height="2.242" Width="1.7" />
   </Comment>
   <Class Name="StockTrk.Alert" Collapsed="true">
     <Position X="5.25" Y="6.75" Width="1.5" />
@@ -13,7 +13,7 @@
   <Class Name="StockTrk.Articles" Collapsed="true">
     <Position X="9.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEAAAABAAAAAgAQAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <HashCode>AAAAAAAAAEAAAABAAAAAgAQAAAEAAAAAAAAAAAAAEAA=</HashCode>
       <FileName>Articles.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -27,14 +27,14 @@
   <Class Name="StockTrk.Stocks" Collapsed="true">
     <Position X="7.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACCIEAAAAEAAAACQAACAIAACACAAAgAAACggAgQAqAA=</HashCode>
+      <HashCode>ACCIEAAAAEAAAAAQAACBIAACACAAAgCAACggAgQAqAA=</HashCode>
       <FileName>Stocks.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="StockTrk.User" Collapsed="true">
     <Position X="2.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIKAAgCCAAAgAAIAAAAAAAAAiIAQAIAAICAAIBA=</HashCode>
+      <HashCode>AAAAAICAAgCCAEAgAAIgAAAAAABAiIAQAIBAICAAIBA=</HashCode>
       <FileName>User.cs</FileName>
     </TypeIdentifier>
   </Class>
