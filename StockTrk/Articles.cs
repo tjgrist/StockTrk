@@ -34,7 +34,7 @@ namespace StockTrk
         {
             Reddit reddit = new Reddit();
             var subreddit = reddit.GetSubreddit("/r/stockmarket");
-            foreach (var post in subreddit.New.Take(75))
+            foreach (var post in subreddit.New.Take(50))
             {
                 foreach (string ticker in stockWatch)
                 {

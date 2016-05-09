@@ -91,10 +91,10 @@ namespace StockTrk
         {
             Console.WriteLine("Which stock would you like to REPLACE or REMOVE?");
             string replacableStock = Console.ReadLine().ToUpper();
-            Console.WriteLine("Press ENTER to remove this stock: {0}.\nOR, type the stock(s) with which you'd like to replace {0}.", replacableStock);
+            Console.WriteLine("Press ENTER to remove this stock: {0}.\nOR, type the stock(s) with which you'd like to REPLACE {0}.", replacableStock);
             string newStock = Console.ReadLine().ToUpper();
-            setStockList(newStock);
             api.YahooUrl = api.YahooUrl.Replace(replacableStock, newStock);
+            setStockList(newStock);
         }
         private void changeQuotes(YahooFinance api, Stocks market)
         {
@@ -116,7 +116,7 @@ namespace StockTrk
         {
             Console.WriteLine("Which QUOTE(s) would you like to REPLACE or REMOVE?");
             string replacementQuote = Console.ReadLine().ToUpper().Replace(" ", "").Replace(",", "");
-            Console.WriteLine("Which Quote(s) would you like to replace it with?\nPress ENTER to remove your input quotes.");
+            Console.WriteLine("Which Quote(s) would you like to replace it with?\nPress ENTER to REMOVE your input quotes.");
             string newQuote = Console.ReadLine().ToUpper().Replace(" ", "").Replace(",", "");
             api.YahooUrl = api.YahooUrl.Remove(api.YahooUrl.IndexOf(market.StockQuotes));
             market.StockQuotes = market.StockQuotes.Replace(replacementQuote, newQuote);
