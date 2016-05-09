@@ -54,38 +54,39 @@ namespace StockTrk
             bool options = true;
             while (options)
             {
-                printOptions();
-                string response = Console.ReadLine().ToLower().Replace(" ","");
-                switch (response)
-                {
-                    case "1":
-                        changeStocks(api);
-                        break;
-                    case "2":
-                        changeQuotes(api, market);
-                        break;
-                    case "3":
-                        viewStocks(api, market);
-                        break;
-                    case "4":
-                        api.downloadCsv();
-                        Console.WriteLine("\nA .csv file was DOWNLOADED to your Downloads folder.\n");
-                        break;
-                    case "5":
-                        showRedditOptions();
-                        break;
-                    case "6":
-                        setPriceAlert(market);
-                        break;
-                    case "q":
-                        options = false;
-                        break;
-                    default:
-                        break;                        
-                }
-
+                printOptionString();
+                options = userChooses(api, market);
             }
-
+        }
+        private bool userChooses(YahooFinance api, Stocks market)
+        {
+            string response = Console.ReadLine().ToLower().Replace(" ", "");
+            switch (response)
+            {
+                case "1":
+                    changeStocks(api);
+                    return true;
+                case "2":
+                    changeQuotes(api, market);
+                    return true;
+                case "3":
+                    viewStocks(api, market);
+                    return true;
+                case "4":
+                    api.downloadCsv();
+                    Console.WriteLine("\nA .csv file was DOWNLOADED to your Downloads folder.\n");
+                    return true;
+                case "5":
+                    showRedditOptions();
+                    return true;
+                case "6":
+                    setPriceAlert(market);
+                    return true;
+                case "q":
+                    return false;
+                default:
+                    return true;
+            }
         }
         private void changeStocks(YahooFinance api)
         {
@@ -93,8 +94,7 @@ namespace StockTrk
             string replacableStock = Console.ReadLine().ToUpper();
             Console.WriteLine("Press ENTER to remove this stock: {0}.\nOR, type the stock(s) with which you'd like to replace {0}.", replacableStock);
             string newStock = Console.ReadLine().ToUpper();
-            string url = api.YahooUrl;
-            api.YahooUrl = url.Replace(replacableStock, newStock);
+            api.YahooUrl = api.YahooUrl.Replace(replacableStock, newStock);
         }
         private void changeQuotes(YahooFinance api, Stocks market)
         {
@@ -146,8 +146,8 @@ namespace StockTrk
         {
             Console.WriteLine("Enter 1 to search tech-related articles.\n"
                 + "Enter 2 to search the subreddit for your tracked stocks.");
-            string input = Console.ReadLine();
-            switch (input)
+            string number = Console.ReadLine();
+            switch (number)
             {
                 case "1":
                     stockNews.showTechFinanceArticles();
@@ -163,17 +163,15 @@ namespace StockTrk
         {
             stockNews.StockWatch = stocks.Split(',').ToList();
         }
-
-        private void printOptions()
+        private void printOptionString()
         {
-            Console.WriteLine("What would you like to do?\n"
-            + "Enter 1 to CHANGE STOCKS.\n"
+            Console.WriteLine("Enter 1 to CHANGE STOCKS.\n"
             + "Enter 2 to CHANGE stock QUOTES.\n"
             + "Enter 3 to VIEW your TRACKED stocks.\n"
             + "Enter 4 to DOWNLOAD a CSV file of your stock portfolio.\n"
             + "Enter 5 to SEARCH for ARTICLES from Reddit's StockMarket subreddit.\n"
             + "Enter 6 to SET a PRICE DIP ALERT for a specific stock.\n"
-            + "To QUIT these options, enter 'Q'");
+            + "Enter 'Q' to QUIT these options.");
         }
     }
 }

@@ -16,7 +16,7 @@ namespace StockTrk
             Stocks market = new Stocks();
             if (user.Validated)
             {
-                Console.WriteLine("Welcome to Stocktrk, your personalized tech-stock tracker.");
+                Console.WriteLine("\nWelcome to StockTrk, your personalized tech-stock tracker.");
                 api.setURL(user, market, api);
                 user.displayOptions(api, market);
                 Console.WriteLine("Thanks for using StockTrk!");

@@ -65,6 +65,7 @@ namespace StockTrk
         }
         private string getQuoteType(string quote)
         {
+            int quoteIndex = quotes.IndexOf(quote);
             if (Regex.IsMatch(quote, @"[A-Z]"))
             {
                 symbol = quote;
@@ -82,39 +83,39 @@ namespace StockTrk
             {
                 return "Last trade time and price: " + quote;
             }
-            else if (quotes.IndexOf(quote) == stockQuotes.IndexOf(openPrice))
+            else if (quoteIndex == getCharacterIndex(openPrice))
             {
                 return "Today's open: $" + quote;
             }
-            else if (quotes.IndexOf(quote) == stockQuotes.IndexOf(previousPrice))
+            else if (quoteIndex == getCharacterIndex(previousPrice))
             {
                 return "Previous close: $" + quote;
             }
-            else if (quotes.IndexOf(quote) == stockQuotes.IndexOf(daysLow))
+            else if (quoteIndex == getCharacterIndex(daysLow))
             {
                 return "Today's low: $" + quote;
             }
-            else if (quotes.IndexOf(quote) == stockQuotes.IndexOf(daysHigh))
+            else if (quoteIndex == getCharacterIndex(daysHigh))
             {
                 return "Today's high: $" + quote;
             }
-            else if (quotes.IndexOf(quote) == stockQuotes.IndexOf(yearLow))
+            else if (quoteIndex == getCharacterIndex(yearLow))
             {
                 return "52-week low: $" + quote;
             }
-            else if (quotes.IndexOf(quote) == stockQuotes.IndexOf(yearHigh))
+            else if (quoteIndex == getCharacterIndex(yearHigh))
             {
                 return "52-week high: $" + quote;
             }
-            else if (quotes.IndexOf(quote) == stockQuotes.IndexOf(buyPrice))
+            else if (quoteIndex == getCharacterIndex(buyPrice))
             {
                 return "Buying at: $" + quote;
             }
-            else if (quotes.IndexOf(quote) == stockQuotes.IndexOf(askPrice))
+            else if (quoteIndex == getCharacterIndex(askPrice))
             {
                 return alert.checkAlert(quote, symbol);
             }  
-            else if (quotes.IndexOf(quote) == stockQuotes.IndexOf(earningsPerShare))
+            else if (quoteIndex == getCharacterIndex(earningsPerShare))
             {
                 return "Earnings per share: $" + quote;
             }
@@ -126,6 +127,10 @@ namespace StockTrk
             {
                 return quote;
             }
+        }
+        private int getCharacterIndex(char userQuote)
+        {
+            return stockQuotes.IndexOf(userQuote);
         }
         public string showCommonStocks()
         {
