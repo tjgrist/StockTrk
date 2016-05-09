@@ -25,8 +25,7 @@ namespace StockTrk
             {
                 if (post.Title.ToLower().Contains("tech"))
                     {
-                        Console.WriteLine(post.SubredditName + "\n" + post.Title);
-                        Console.WriteLine("Reddit Score: " + post.Score);
+                        Console.WriteLine("Article Title: " + post.Title);
                         Console.WriteLine("Reddit post Link: " + post.Shortlink + "\n");                    
                     }
             }
@@ -35,7 +34,7 @@ namespace StockTrk
         {
             Reddit reddit = new Reddit();
             var subreddit = reddit.GetSubreddit("/r/stockmarket");
-            foreach (var post in subreddit.New.Take(50))
+            foreach (var post in subreddit.New.Take(75))
             {
                 foreach (string ticker in stockWatch)
                 {

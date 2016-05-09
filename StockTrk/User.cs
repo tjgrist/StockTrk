@@ -93,6 +93,7 @@ namespace StockTrk
             string replacableStock = Console.ReadLine().ToUpper();
             Console.WriteLine("Press ENTER to remove this stock: {0}.\nOR, type the stock(s) with which you'd like to replace {0}.", replacableStock);
             string newStock = Console.ReadLine().ToUpper();
+            setStockList(newStock);
             api.YahooUrl = api.YahooUrl.Replace(replacableStock, newStock);
         }
         private void changeQuotes(YahooFinance api, Stocks market)
@@ -160,7 +161,12 @@ namespace StockTrk
         }
         private void setStockList(string stocks)
         {
-            stockNews.StockWatch = stocks.Split(',').ToList();
+            string[] stocksToAdd = stocks.Split(',');
+            foreach (string stock in stocksToAdd)
+            {
+                stockNews.StockWatch.Add(stock);
+                Console.WriteLine(stock);
+            }
         }
         private void printOptionString()
         {
