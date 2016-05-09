@@ -41,19 +41,23 @@ namespace StockTrk
             foreach (string stock in stockList)
             {
                 Console.WriteLine();
-                if (stock.Contains(", Inc.") || stock.Contains(", Inc"))
-                {
-                    quotes = stock.Replace(" ", "").Split(',').ToList();
-                    quotes.RemoveAt(1);
-                    loopQuotes(quotes);
-                }
-                else
-                {
-                    quotes = stock.Split(',').ToList();
-                    loopQuotes(quotes);
-                }
+                parseStock(stock);
             }
             Console.WriteLine("TIME: " + DateTime.Now + "\n");
+        }
+        private void parseStock(string stock)
+        {
+            if (stock.Contains(", Inc.") || stock.Contains(", Inc"))
+            {
+                quotes = stock.Replace(" ", "").Split(',').ToList();
+                quotes.RemoveAt(1);
+                loopQuotes(quotes);
+            }
+            else
+            {
+                quotes = stock.Split(',').ToList();
+                loopQuotes(quotes);
+            }
         }
         private void loopQuotes(List<string> quotes)
         {

@@ -47,8 +47,7 @@ namespace StockTrk
             market.StockQuotes = "NS" + stockCharacters;
             fullUrl = baseUrl + stocks + "&f=NS" + stockCharacters;
             return fullUrl;
-        }
-        
+        }       
         public void displayOptions(YahooFinance api, Stocks market)
         {
             bool options = true;
