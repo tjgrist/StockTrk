@@ -53,7 +53,7 @@ namespace StockTrk
         }
         private void launchArticle(string shortlink)
         {
-            Console.WriteLine("Enter 1 to launch this article.\nPress ENTER to continue.");
+            Console.WriteLine("Enter 1 to LAUNCH this article.\nPress ENTER to continue.");
             string launch = Console.ReadLine();
             switch (launch)
             {
